@@ -1,4 +1,10 @@
-skeleton
-========
+# HTML5 Skeleton
+===================
+This is my HTML5 skeleton
 
-HTML5 Skeleton
+## Support
+- Chrome ( latest version )
+- Firefox ( latest version )
+- IE8+ ( latest version )
+- Opera ( latest version )
+- Safari ( latest version )
