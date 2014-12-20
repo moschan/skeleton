@@ -1,0 +1,168 @@
+{
+    /*
+    * Enforcing options
+    */
+
+    "bitwise":       true, // ビット演算子の禁止
+    "camelcase":     true, // 変数名をキャメルケースかアンスコ区切りのみ
+    "curly":         true, // function, ifのブレース囲み必須
+    "eqeqeq":        true, // 等価演算子は===, !==のみ
+    "es3":          false, // ES3に乗っ取る。レガシーな環境対策用。
+    "forin":         true, // for-inでhasOwnPropertyによるプロパティのチェックを強制する
+    "freeze":        true, // ネイティブオブジェクトのプロトタイプの変更を禁止する。
+    "immed":         true, // パーレン()で囲わない即時関数を禁止する。
+    // "indent":    2, // インデント幅を強制する。4 2 など
+    "latedef":       true, // 変数を定義前に使うことを禁止する。
+    "newcap":        true, // コンストラクタ関数の名前は大文字で始めることを強制する。
+    "noarg":         true, // arguments.caller、arguments.calleeを禁止する。
+    "noempty":       true, // 空のブロックがあると警告を発する。
+    "nonew":         true, // コンストラクタ関数をnewで呼び出した値を変数に格納することを強制する。
+    "plusplus":     false, // ++、--の使用を禁止する。
+    "quotmark":      true, // クオーテーションマークの一貫性を強制する。
+    "undef":         true, // var宣言されていない変数を使用することを禁止する。
+    "unused":        true, // 宣言しても使っていない変数があったら警告する。
+    "strict":        true, // 全ての関数に対して、ECMAScript 5のstrict modeを求めるようになる。
+    "trailing":      true, // 行末のホワイトスペースを許さない。
+    //"maxparams":      5, // 関数に指定できる引数の数を制限する。
+    //"maxdepth":       5, // ブロックのネスト数を制限する。
+    //"maxstatements": 10, // 1つの関数に含められるステートメントの数を制限する。
+    //"maxcomplexity": 10, // 循環的複雑度（cyclomatic complexity）を制限する。
+    "maxlen":          90, // 1行あたりの最大文字数を制限する。
+
+
+
+    /*
+    * Relaxing options
+    */
+
+    // セミコロンなしの警告を出さなくなる。
+    "asi": false,
+
+    // 条件式を入れる場所で変数への代入をしていても警告を出さなくなる。
+    "boss": false,
+
+    // debugger宣言していても警告を出さなくなる。
+    "debug" : true,
+
+    // 比較に===ではなく==を使っても警告を出さなくなる。
+    "eqnull": false,
+
+    // ECMAScript 6独自のシンタックスの使用にお許しが出る。
+    "esnext": false,
+
+    // evalを利用しても警告が出なくなる。
+    "evil": false,
+
+    // x || (x = 1); とかができるようにする
+    "expr": true,
+
+    // ifやfor等のブロック内で宣言した変数を、ブロックの外に出てから使った場合の警告を出ないようにする。
+    "funcscope": false,
+
+    // グローバルスコープにuse strictすることを強いる。
+    "globalstrict": false,
+
+    // __iterator__プロパティを使った場合に警告が出ないようにする。
+    "iterator": false,
+
+    // セミコロン忘れの警告を出ないようにする。
+    "lastsemic": false,
+
+    // 安全でない改行があっても警告が出ないようにする。
+    "laxbreak": false,
+
+    // カンマを行頭に持ってくるコードディングスタイルに文句を言わなくなる。
+    "laxcomma": false,
+
+    // ループ内での関数定義に文句を言わなくなる。
+    "loopfunc": false,
+
+    // MozillaのJavaScript拡張を利用しているよー、とJSHintに教えてあげる。
+    "moz": false,
+
+    // 複数行の文字列に警告を出さなくなる。
+    "multistr": false,
+
+    // typeof演算子と比較する値がアレだった場合でも警告を出さなくなる。
+    "notypeof": false,
+
+    // __proto__プロパティにアクセスしても警告をしなくなる。
+    "proto": false,
+
+    // こんな感じの、スクリプト実行系のURLを生成した時に怒らなくなる。例 var x = 'javascript: foo()';
+    "scripturl": false,
+
+    // タブとスペースが混在しても警告しなくなる。
+    "smarttabs": false,
+
+    // 変数名のシャドーイングに文句を言わなくなる。
+    "shadow": false,
+
+    // obj['name']じゃなくてobj.nameって書けよ！という文句を言ってこなくなる。
+    "sub": false,
+
+    // "weird"コンストラクション、つまりは new function () { ... }みたいなやつを受け入れてくれる。シングルトンで使うかも知れないしね。
+    "supernew": false,
+
+    // ※このオプションは関数スコープ内でのみ使える。グローバルにこのオプションを指定するとJSHintはエラーで失敗する
+    "validthis": false,
+
+
+
+    /*
+    * Environments
+    * JSHintに元々用意されているグローバル変数を教えるためのオプションたち。
+    */
+
+    // navigatorとかHTML5 FileReaderのオブジェクトとか、
+    // 今どきブラウザが用意しているオブジェクトがグローバル宣言されていることになる。
+    "browser": true,
+
+    // consoleとかalertとか、デバッグに使うオブジェクトがグローバル宣言されていることになる。
+    // プロダクションではこの設定を外した方がいい。console.logと書いてあると、古いIEが爆発するエラーを吐くので。
+    "devel" : true,
+
+    // Dojo Toolkitの用意しているオブジェクトがグローバル宣言されていることになる。
+    "dojo": false,
+
+    // jQueryの用意しているオブジェクトがグローバル宣言されていることになる。
+    "jquery": true,
+
+    // MooToolsの用意しているオブジェクトがグローバル宣言されていることになる。
+    "mootools": false,
+
+    // Node.jsの用意しているオブジェクトがグローバル宣言されていることになる。
+    // 加えて、ブラウザ環境であれば警告とみなす記述に目をつぶってくれる。
+    // ファイル毎のuse strict宣言とか、console.logとか。
+    "node": true,
+
+    // 標準で用意されていないがよく使われるグローバル変数をグローバル宣言していることにする。
+    // escapeとかunescapeとか。
+    // （んー、個人的にこれは危険な香りがする…）
+    "nonstandard": false,
+
+    // PhantomJSの用意しているオブジェクトがグローバル宣言されていることになる。
+    "phantom": false,
+
+    // Protytype.jsの用意しているオブジェクトがグローバル宣言されていることになる。
+    "prototypejs": false,
+
+    // Rhinoの用意しているオブジェクトがグローバル宣言されていることになる。
+    "rhino": false,
+
+    // Web Workerの用意しているオブジェクトがグローバル宣言されていることになる。
+    "worker": false,
+
+    // Windows Script Hostの用意しているオブジェクトがグローバル宣言されていることになる。
+    "wsh": false,
+
+    // YUIの用意しているオブジェクトがグローバル宣言されていることになる。
+    "yui": false
+
+
+
+    /*
+    * カスタムグローバルキーワードの設定
+    */
+    //"predef": ["Backbone"]
+}
