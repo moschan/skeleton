@@ -1,0 +1,18 @@
+{
+    "always-semicolon": true,
+    "color-case": "lower",
+    "color-shorthand": false,
+    "element-case": "lower",
+    "eof-newline": true,
+    "leading-zero": true,
+    "quotes": "single",
+    "space-before-colon": "",
+    "space-after-colon": " ",
+    "space-before-combinator": " ",
+    "space-after-combinator": " ",
+    "space-before-opening-brace": " ",
+    "space-before-selector-delimiter": "",
+    "strip-spaces": true,
+    "unitless-zero": true,
+    "vendor-prefix-align": true
+}
