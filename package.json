@@ -1,31 +1,38 @@
 {
-  "name": "default",
+  "name": "RichMedia-Frontend-scaffolding",
   "version": "0.0.1",
-  "description": "This is default assets",
-  "main": "index.js",
-  "scripts": {},
+  "description": "RichMedia-Frontend-scaffolding",
+  "main": "",
+  "scripts": {
+    "start": "echo 'initialize..'",
+    "production": ""
+  },
   "author": "RichMedia",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.8.8",
-    "jquery": "^2.1.1",
+    "bower": "^1.3.12",
     "browserify": "^5.12.0",
     "vinyl-source-stream": "^1.0.0",
     "gulp-watch": "^1.0.7",
-    "gulp-bower-files": "^0.2.7",
-    "gulp-plumber": "^0.6.5",
+    "gulp-plumber": "^0.6.6",
     "gulp-concat": "^2.4.1",
     "gulp-autoprefixer": "^1.0.1",
     "gulp-eslint": "^0.1.8",
     "gulp-jscs": "^1.1.2",
     "csscomb": "^3.0.2",
     "gulp-csscomb": "^3.0.2",
-    "bower": "^1.3.12",
     "gulp-scss-lint": "^0.1.4",
     "gulp-compass": "^2.0.3",
     "run-sequence": "^1.0.2",
     "gulp-task-listing": "^1.0.0",
     "gulp-uglify": "^1.1.0",
-    "gulp-streamify": "0.0.5"
+    "gulp-streamify": "0.0.5",
+    "main-bower-files": "^2.5.0",
+    "gulp-hologram": "^1.2.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-notify": "^2.2.0",
+    "minimist": "^1.1.0",
+    "gulp-shell": "^0.2.11"
   }
 }

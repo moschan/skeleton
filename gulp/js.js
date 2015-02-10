@@ -1,24 +1,15 @@
-module.exports = function(gulp) {
+module.exports = function(gulp, args, DIRS) {
 
   var browserify   = require('browserify');
   var plumber      = require('gulp-plumber');
   var source       = require('vinyl-source-stream');
   var concat       = require('gulp-concat');
-  var bowerFiles   = require("gulp-bower-files");
+  var mainBowerFiles = require('main-bower-files');
   var jscs         = require('gulp-jscs');
   var eslint       = require('gulp-eslint');
   var uglify       = require('gulp-uglify');
   var gStreamify   = require('gulp-streamify');
   var runSequence  = require('run-sequence');
-
-  /**
-  * config
-  */
-
-  var PC     = './pc/';
-  var SP     = './sp/';
-  var SHARED = './shared/';
-
 
   var jsCompile = function( target ) {
     return browserify({
@@ -35,58 +26,62 @@ module.exports = function(gulp) {
     })
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gStreamify(uglify()))
+    .pipe(gStreamify(uglify('bundle.js', {outSourceMap: true})))
     .pipe(gulp.dest( target + '/out/js/'));
   };
 
-
-  var jsCompileVendor = function( target ) {
-    bowerFiles()
-      .pipe(plumber())
-      .pipe(concat('vendor.js'))
-      .pipe(gStreamify(uglify()))
+  var vendorCompile = function( target ) {
+    // bower用に整形
+    target.substring(1,1);
+    return gulp.src( mainBowerFiles({
+      paths: {
+        bowerDirectory: target + "/components",
+        bowerJson: target + "/bower.json"
+      } }))
+      // .pipe(uglify())
       .pipe(gulp.dest( target + '/out/js/'));
   };
 
+  var compile = function(targets) {
+    // 対象を全てコンパイル
+    targets.map(jsCompile);
+  };
 
-  gulp.task('shared-js', function() {
-    return jsCompile( SHARED );
-  });
+  var vendor = function(targets) {
+    // 対象を全てコンパイル
+    targets.map(vendorCompile);
+  };
 
-  gulp.task('shared-vendor', function() {
-    return jsCompileVendor( SHARED );
-  });
+  var watch = function(targets) {
+    var watch_dir = '/js/**/*.js';
+    // 対象を全てコンパイル
+    targets.map(function(target){
+      gulp.watch( target + watch_dir, function() {
+        compile([target]);
+      });
+    });
+  };
 
-
-  gulp.task('pc-js', function() {
-    return jsCompile( PC );
-  });
-
-  gulp.task('pc-vendor', function() {
-    return jsCompileVendor( PC );
-  });
-
-
-  gulp.task('sp-js', function() {
-    return jsCompile( SP );
-  });
-
-  gulp.task('sp-vendor', function() {
-    return jsCompileVendor( SP );
-  });
+  /**
+   * javascriptのコンパイル
+   */
 
   gulp.task('js', function() {
-    runSequence('pc-js', 'sp-js', 'shared-js');
-  });
+    // 何かdirectoryタイプが指定されていた場合はそのディレクトリを対象に実行
+    args.d = typeof(args.d) === 'string' ? [args.d] : args.d;
+    args.d = (typeof(args.d) === 'undefined') || (typeof(args.d) === true) ? DIRS : args.d;
 
-  gulp.task('js-build', function() {
-    jsCompile( SHARED );
-    jsCompile( PC );
-    jsCompile( SP );
-  });
+    // bowerで取ってきたベンダーのコンパイル
+    if( args.b === true ) {
+      vendor(args.d);
+      return;
+    }
 
-  gulp.task('vendor', function() {
-    runSequence('pc-vendor', 'sp-vendor', 'shared-vendor');
+    if( args.w === true ) {
+      watch(args.d);
+    } else {
+      compile(args.d);
+    }
   });
 
 };
